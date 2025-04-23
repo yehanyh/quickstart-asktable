@@ -2,74 +2,6 @@ Service:
   RegionId: cn-hangzhou
   DeployType: ros
   DeployMetadata:
-    SupplierDeployMetadata:
-      ArtifactRelation:
-        centos_7:
-          ArtifactId: ${Artifact.Artifact.ArtifactId}
-          ArtifactVersion: ${Artifact.Artifact.ArtifactVersion}
-      SupplierTemplateConfigs:
-        - Name: 单机版
-          Url: 
-            https://service-info-private.oss-cn-hangzhou.aliyuncs.com/1853370294850618/template/17921e3e-90c5-4282-82aa-1cc2e3250864.json?Expires=1744874915&OSSAccessKeyId=LTAI5tCYphFhocJemeMWmXst&Signature=JmZB66mCA3CXB%2B7UXH7Uo9xIoz4%3D
-          PredefinedParameters:
-            - Name: 热卖套餐，特价99元/年（限购1台）
-              Parameters:
-                EcsInstanceType:
-                  - ecs.e-c1m1.large
-                SystemDiskCategory: cloud_essd_entry
-                SystemDiskSize: 40
-                InternetChargeType: PayByBandwidth
-                InternetMaxBandwidthOut: 3
-                PayPeriodUnit: Month
-                PayPeriod: 12
-                PayType: PrePaid
-              OrderList:
-                - EcsInstanceType
-                - SystemDiskCategory
-                - SystemDiskSize
-                - InternetChargeType
-                - InternetMaxBandwidthOut
-                - PayPeriodUnit
-                - PayPeriod
-                - PayType
-              Type: Normal
-              Description: 固定带宽不限流量，新老同享，上云首选！
-            - Name: 尝鲜套餐，只需0.3元/小时
-              Parameters:
-                EcsInstanceType:
-                  - ecs.e-c1m1.large
-                SystemDiskCategory: cloud_essd_entry
-                SystemDiskSize: 40
-                InternetChargeType: PayByBandwidth
-                InternetMaxBandwidthOut: 3
-                PayType: PostPaid
-              OrderList:
-                - EcsInstanceType
-                - SystemDiskCategory
-                - SystemDiskSize
-                - InternetChargeType
-                - InternetMaxBandwidthOut
-                - PayPeriodUnit
-                - PayPeriod
-                - PayType
-              Type: Normal
-              Description: 可用300元学生专属代金券抵扣！
-            - Name: 自定义套餐
-              Parameters: {}
-              OrderList:
-                - EcsInstanceType
-                - SystemDiskCategory
-                - SystemDiskSize
-                - InternetChargeType
-                - InternetMaxBandwidthOut
-                - PayPeriodUnit
-                - PayPeriod
-                - PayType
-              Type: Custom
-          AllowedRegions:
-            - cn-beijing
-            - cn-hangzhou
-            - cn-heyuan
     TemplateConfigs:
       - Name: 单机版
         Url: ros_templates/template1.yaml
@@ -77,79 +9,13 @@ Service:
           - cn-beijing
           - cn-hangzhou
           - cn-heyuan
-        PredefinedParameters:
-          - Name: 热卖套餐，特价99元/年（限购1台）
-            Parameters:
-              EcsInstanceType:
-                - ecs.e-c1m1.large
-              SystemDiskCategory: cloud_essd_entry
-              SystemDiskSize: 40
-              InternetChargeType: PayByBandwidth
-              InternetMaxBandwidthOut: 3
-              PayPeriodUnit: Month
-              PayPeriod: 12
-              PayType: PrePaid
-            OrderList:
-              - EcsInstanceType
-              - SystemDiskCategory
-              - SystemDiskSize
-              - InternetChargeType
-              - InternetMaxBandwidthOut
-              - PayPeriodUnit
-              - PayPeriod
-              - PayType
-            Type: Normal
-            Description: 固定带宽不限流量，新老同享，上云首选！
-          - Name: 尝鲜套餐，只需0.3元/小时
-            Parameters:
-              EcsInstanceType:
-                - ecs.e-c1m1.large
-              SystemDiskCategory: cloud_essd_entry
-              SystemDiskSize: 40
-              InternetChargeType: PayByBandwidth
-              InternetMaxBandwidthOut: 3
-              PayType: PostPaid
-            OrderList:
-              - EcsInstanceType
-              - SystemDiskCategory
-              - SystemDiskSize
-              - InternetChargeType
-              - InternetMaxBandwidthOut
-              - PayPeriodUnit
-              - PayPeriod
-              - PayType
-            Type: Normal
-            Description: 可用300元学生专属代金券抵扣！
-          - Name: 自定义套餐
-            Parameters: {}
-            OrderList:
-              - EcsInstanceType
-              - SystemDiskCategory
-              - SystemDiskSize
-              - InternetChargeType
-              - InternetMaxBandwidthOut
-              - PayPeriodUnit
-              - PayPeriod
-              - PayType
-            Type: Custom
-        ArchitectureDiagramUrl: 
-          https://service-info-private.oss-cn-hangzhou.aliyuncs.com/1853370294850618/architecture/架构图.jpg?Expires=1744874915&OSSAccessKeyId=LTAI5tCYphFhocJemeMWmXst&Signature=m9RTtzHqf%2F4VljOu%2BJgixENOJCQ%3D
-        DeployScene: ECS
-    NetworkMetadata:
-      EnablePrivateVpcConnection: false
-      EnableReversePrivateVpcConnection: false
     ServiceInstanceNameRule:
       Prefix: asktable-
       UseDefaultValue: false
-  OperationMetadata:
-    SupportBackup: false
-    PrometheusConfigMap:
-      单机版:
-        EnablePrometheus: false
   ServiceType: private
   ServiceInfo:
     - Agreements: []
-      Image: resources/icons/service_logo_zh-CN.png
+      Image: resources/icons/service_logo.jpg
       Locale: zh-CN
       Name: AskStable社区版
       ShortDescription: AskTable 是一款专为企业设计的智能对话机器人，能够快速集成到现有系统，理解自然语言查询，提供精准的业务数据和自动化任务处理，大幅提升企业效率和客户满意度。
@@ -186,39 +52,44 @@ ImageBuilder:
         mkdir /root/asktable &&cd /root/asktable
 
         cat > /root/asktable/docker-compose.yml << "EOF"
-services:
-asktable:
-# AskTable
-image: registry.cn-shanghai.aliyuncs.com/datamini/asktable-all-in-one:latest
-container_name: asktable
-depends_on:
-  - asktable_mysql
-ports:
-  - 8000:80
-environment:
-  TZ: Asia/Shanghai
-  BASE_URL: http://127.0.0.1:8000          # 【须修改】容器对外暴露的地址（即从外部比如浏览器访问的地址）
-  LLM_API_KEY: ${LLM_API_KEY}           # 【须修改】AI 模型令牌，是以“asktable-”开头的字符串。登录 AskTable(https://cloud.asktable.com/?dialog=deployment) 获取。
-  MYSQL_HOST: asktable_mysql
-  MYSQL_USER: asktable
-  MYSQL_PASSWORD: asktable
-  MYSQL_DB: asktable
-volumes:
-  - ./asktable_data:/asktable
+        services:
+          asktable:
+            # AskTable
+            image: registry.cn-shanghai.aliyuncs.com/datamini/asktable-all-in-one:latest
+            container_name: asktable
+            depends_on:
+              - asktable_mysql
+            ports:
+              - 8000:80
+            environment:
+              TZ: Asia/Shanghai
+              BASE_URL: http://127.0.0.1:8000
+              LLM_API_KEY: ${LLM_API_KEY}
+              MYSQL_HOST: asktable_mysql
+              MYSQL_USER: asktable
+              MYSQL_PASSWORD: asktable
+              MYSQL_DB: asktable
+            volumes:
+              - ./asktable_data:/asktable
+            healthcheck:
+              test: ["CMD", "curl", "--fail", "http://localhost:80/health"]
+              interval: 10s
+              timeout: 10s
+              retries: 10
 
-asktable_mysql:
-image: registry.cn-shanghai.aliyuncs.com/dminfra/mysql:8.0.27
-# image: mysql:8.0.27   # 其他地区
-container_name: asktable_mysql
-ports:
-  - "3306:3306"
-environment:
-  TZ: Asia/Shanghai
-  MYSQL_ROOT_PASSWORD: asktable
-  MYSQL_DATABASE: asktable
-  MYSQL_USER: asktable
-  MYSQL_PASSWORD: asktable
-volumes:
-  - ./mysql_data:/var/lib/mysql
+          asktable_mysql:
+            image: registry.cn-shanghai.aliyuncs.com/dminfra/mysql:8.0.27
+            # image: mysql:8.0.27   # 其他地区
+            container_name: asktable_mysql
+            ports:
+              - "3306:3306"
+            environment:
+              TZ: Asia/Shanghai
+              MYSQL_ROOT_PASSWORD: asktable
+              MYSQL_DATABASE: asktable
+              MYSQL_USER: asktable
+              MYSQL_PASSWORD: asktable
+            volumes:
+              - ./mysql_data:/var/lib/mysql
         EOF
         docker compose up -d

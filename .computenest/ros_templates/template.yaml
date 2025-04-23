@@ -437,8 +437,7 @@ Metadata:
           Value: '${PayPeriod} ${PayPeriodUnit}'
       CustomFields:
         - Key: InstancePassword
-        - Key: BaiLianApiKey
-        - Key: AmapApiKey
+        - Key: AskTableApiKey
       CostRelatedKeys:
         - RegionId
         - PayPeriod
