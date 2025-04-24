@@ -9,7 +9,6 @@ Service:
         centos_7:
           ArtifactId: ${Artifact.EcsImage.ArtifactId}
           ArtifactVersion: ${Artifact.EcsImage.ArtifactVersion}
-  DeployMetadata:
     TemplateConfigs:
       - Name: 单机版
         Url: ros_templates/template.yaml
