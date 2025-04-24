@@ -265,7 +265,7 @@ Resources:
           - Ref: EcsVpc
           - Ref: VpcId
       SecurityGroupIngress:
-        - PortRange: 80/80
+        - PortRange: 8000/8000
           Priority: 1
           SourceCidrIp: 0.0.0.0/0
           IpProtocol: tcp
@@ -327,8 +327,8 @@ Resources:
       CommandContent:
         Fn::Sub:
           - |
-            cd /root/mcp
-            cat > /root/mcp/.env << "EOF"
+            cd /root/asktable/
+            cat > /root/asktable/.env << "EOF"
             LLM_API_KEY=${AskTableApiKey}
             EOF
 
@@ -367,13 +367,13 @@ Resources:
             AskTableApiKey:
               Ref: AskTableApiKey
 Outputs:
-  open-webui_address:
+  AskTable_address:
     Description:
-      en: open-webui address.
-      zh-cn: open-webui 访问页面。
+      en: AskTable address
+      zh-cn: AskTable 访问地址
     Value:
       Fn::Sub:
-        - http://${ServerAddress}:8080
+        - http://${ServerAddress}:8000
         - ServerAddress:
             Fn::Select:
               - 0
@@ -443,4 +443,3 @@ Metadata:
         - PayPeriod
       AutomaticZone:
         ZoneIdKey: ZoneId
-
