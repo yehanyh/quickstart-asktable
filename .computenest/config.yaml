@@ -7,8 +7,8 @@ Service:
     SupplierDeployMetadata:
       ArtifactRelation:
         centos_7:
-          ArtifactId: ${Artifact.EcsImage.ArtifactId}
-          ArtifactVersion: ${Artifact.EcsImage.ArtifactVersion}
+          ArtifactId: ${Artifact.Artifact.ArtifactId}
+          ArtifactVersion: ${Artifact.Artifact.ArtifactVersion}
     TemplateConfigs:
       - Name: 单机版
         Url: ros_templates/template.yaml
