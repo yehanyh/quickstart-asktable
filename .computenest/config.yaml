@@ -22,7 +22,7 @@ Service:
   ServiceType: private
   ServiceInfo:
     - Agreements: []
-      Image: resources/icons/service_logo.jpg
+      Image: resources/icons/service_logo.png
       Locale: zh-CN
       Name: AskStable社区版
       ShortDescription: AskTable 是一款专为企业设计的智能对话机器人，能够快速集成到现有系统，理解自然语言查询，提供精准的业务数据和自动化任务处理，大幅提升企业效率和客户满意度。
