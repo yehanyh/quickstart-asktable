@@ -32,7 +32,7 @@ Artifact:
       ImageId: ${ImageBuilder.EcsImage.SourceImageId}
 ImageBuilder:
   EcsImage:
-    RegionId: ap-southeast-1
+    RegionId: cn-shanghai
     SourceImageId: ubuntu_24_04_x64_20G_alibase_20250317.vhd
     SystemDiskSize: 40
     InstanceType: ecs.c6.large
