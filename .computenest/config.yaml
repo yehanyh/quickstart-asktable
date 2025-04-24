@@ -12,13 +12,6 @@ Service:
     TemplateConfigs:
       - Name: 单机版
         Url: ros_templates/template.yaml
-        AllowedRegions:
-          - cn-beijing
-          - cn-hangzhou
-          - cn-heyuan
-    ServiceInstanceNameRule:
-      Prefix: asktable-
-      UseDefaultValue: false
   ServiceType: private
   ServiceInfo:
     - Agreements: []
