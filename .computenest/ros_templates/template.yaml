@@ -373,7 +373,7 @@ Outputs:
       zh-cn: open-webui 访问页面。
     Value:
       Fn::Sub:
-        - http://${ServerAddress}:80
+        - http://${ServerAddress}:8080
         - ServerAddress:
             Fn::Select:
               - 0
